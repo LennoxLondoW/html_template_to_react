@@ -1,6 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 
 function Header() {
+  const currentTheme = localStorage.getItem('theme');
+    
+  if (currentTheme) {
+      document.documentElement.setAttribute('data-theme', currentTheme);
+  }
+
+  const [checked, setChecked] = useState(currentTheme === 'dark')
+  
+  function changeTheme(e){   
+    if (e.target.checked) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      localStorage.setItem('theme', 'dark');
+      setChecked(true)
+  }
+  else {       
+     document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+        setChecked(false)
+  }     
+    
+  }
   return (
     <div>
       {/*header*/}
@@ -76,7 +97,7 @@ function Header() {
                         placeholder="Search"
                         name="search"
                         required="required"
-                        autofocus=""
+                        autoFocus=""
                       />
                       <button type="submit" className="btn">
                         <span
@@ -103,8 +124,8 @@ function Header() {
             <div className="mobile-position">
               <nav className="navigation">
                 <div className="theme-switch-wrapper">
-                  <label className="theme-switch" for="checkbox">
-                    <input type="checkbox" id="checkbox" />
+                  <label className="theme-switch" htmlFor="checkbox">
+                    <input type="checkbox" id="checkbox" checked={checked} onChange={changeTheme} />
                     <div className="mode-container py-1">
                       <i className="gg-sun"></i>
                       <i className="gg-moon"></i>

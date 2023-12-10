@@ -1,6 +1,10 @@
 import React from "react";
 
 function Footer() {
+  function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
   return (
     <div>
       {/* footer */}
@@ -107,7 +111,7 @@ function Footer() {
           </div>
 
           {/* move top */}
-          <button onclick="topFunction()" id="movetop" title="Go to top">
+          <button onClick={topFunction} id="movetop" title="Go to top">
             &#10548;
           </button>
 
